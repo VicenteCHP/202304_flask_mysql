@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head_title %}Lista de usuarios{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+    <h2 class="d-inline">
+        <i class="bi bi-card-list me-2"></i>Lista de usuarios
+    </h2>
+</div>
+
+{% if usuarios %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo electrónico</th>
+            <th scope="col">Fecha creación</th>
+            <th scope="col">Fecha modificación</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for usuario in usuarios %}
+        <tr>
+            <th scope="row">{{ usuario.id }}</th>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.correo_electronico }}</td>
+            <td>{{ usuario.created_at }}</td>
+            <td>{{ usuario.updated_at }}</td>
+            <td>
+                <a href="/usuarios/{{ usuario.id }}/detail" class="btn btn-sm btn-info">
+                    <i class="bi bi-search me-1"></i>Detalle
+                </a>
+                <a href="/usuarios/{{ usuario.id }}/update" class="btn btn-sm btn-warning">
+                    <i class="bi bi-pencil-square me-1"></i>Actualizar
+                </a>
+                <a href="/usuarios/{{ usuario.id }}/delete" class="btn btn-sm btn-danger">
+                    <i class="bi bi-trash-fill me-1"></i>Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sin usuarios.</p>
+{% endif %}
+
+<div class="mt-4">
+    <a href="{{ url_for('usuarios_create') }}" class="btn btn-sm btn-outline-primary">
+        <i class="bi bi-person-plus-fill me-1"></i>Crear un nuevo usuario
+    </a>
+</div>
+{% endblock %}

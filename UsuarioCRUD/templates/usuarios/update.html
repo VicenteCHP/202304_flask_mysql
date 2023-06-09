@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head_title %}Actualizar un usuario{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+    <h2 class="d-inline">Actualizar un usuario</h2>
+    <a href="{{ url_for('usuarios_list') }}" class="btn btn-link float-end">
+        <i class="bi bi-arrow-left-circle me-2"></i>Volver a la lista de usuarios
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="card p-3" style="width: 600px;">
+        <div class="card-body">
+            <form action="{{ url_for('usuarios_update', id=usuario.id) }}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" value="{{ usuario.nombre }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input class="form-control" type="text" name="apellido" value="{{ usuario.apellido }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Correo electrónico</label>
+                    <input class="form-control" type="email" name="correo_electronico" value="{{ usuario.correo_electronico }}">
+                </div>
+                <button type="submit" class="btn btn-warning float-end mt-3">
+                    <i class="bi bi-pencil-square me-1"></i>Actualizar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
